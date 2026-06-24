@@ -1,15 +1,54 @@
 classDiagram
-    %% Replace the placeholders below with your actual classes, attributes, methods, and relationships.
-    %% Keep this file updated so it matches your final implementation.
-
-    class ClassName {
-        +type attribute
-        +method() returnType
+    class Owner {
+        -owner_id: int
+        -name: str
+        -available_time: int
+        -preferences: List[str]
+        +update_available_time(time: int) None
+        +add_preference(pref: str) None
+        +remove_preference(pref: str) None
     }
 
-    class AnotherClass {
-        +type attribute
-        +method() returnType
+    class Pet {
+        -pet_id: int
+        -name: str
+        -species: str
+        -age: int
+        +update_age(age: int) None
     }
 
-    ClassName --> AnotherClass : relationship
+    class CareTask {
+        -task_id: int
+        -name: str
+        -task_type: str
+        -duration: int
+        -priority: int
+        -is_daily: bool
+        -completed: bool
+        +mark_complete() None
+        +mark_incomplete() None
+        +update_priority(priority: int) None
+    }
+
+    class Scheduler {
+        -owner: Owner
+        -pet: Pet
+        -tasks: List[CareTask]
+        -scheduled_tasks: List[CareTask]
+        -total_duration: int
+        -explanation: List[str]
+        +add_task(task: CareTask) None
+        +remove_task(task_id: int) None
+        +edit_task(task_id: int) None
+        +rank_tasks() List[CareTask]
+        +generate_plan() List[CareTask]
+        +calculate_total_duration() int
+        +generate_explanation() List[str]
+    }
+
+    Owner "1" --> "1..*" Pet : owns
+    Pet "1" --> "0..*" CareTask : requires
+
+    Scheduler "1" --> "1" Owner : manages schedule for
+    Scheduler "1" --> "1" Pet : schedules care for
+    Scheduler "1" o-- "0..*" CareTask : tracks

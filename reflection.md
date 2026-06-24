@@ -5,7 +5,25 @@
 **a. Initial design**
 
 - Briefly describe your initial UML design.
+  - My initial UML design identified the classes: owner, pet, tasks, constraint, daily plan and, scheduler. At first I was guided by logic (if there is an owner, there has to be a pet, and if there is a pet, then there should be  some care related to it), then I re-red and analysed the README.md file to recognize other nouns mentioned in the requirements and flow to determine if they should be classes as well.
+  - Moreover, during breakout rooms Robert helped me see how daily plan and scheduler could be merged in one and add an attribute (such as "daily" or "sporadic"). I will also be using that train of thought to get rid of constraints and merge it with owner - a very useful insight!! 
+  
 - What classes did you include, and what responsibilities did you assign to each?
+  - The classes added and their respective functions/actions are:
+    1. Owner
+       1. available_time()
+       2. add_preference()
+       3. remove_preference()
+    2. Pet
+       1. update_age() 
+    3. Tasks
+       1. complete()
+       2. incomplete()
+       3. update_priotity()
+    4. Scheduler
+       1. add_task()
+       2. remove_task()
+       3. edit_task()
 
 **b. Design changes**
 
