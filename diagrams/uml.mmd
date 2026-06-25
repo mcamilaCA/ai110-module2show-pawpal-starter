@@ -17,7 +17,7 @@ classDiagram
         +update_age(age: int) None
     }
 
-    class CareTask {
+    class Task {
         -task_id: int
         -name: str
         -task_type: str
@@ -47,8 +47,8 @@ classDiagram
     }
 
     Owner "1" --> "1..*" Pet : owns
-    Pet "1" --> "0..*" CareTask : requires
+    Pet "1" --> "0..*" Task : requires
 
     Scheduler "1" --> "1" Owner : manages schedule for
     Scheduler "1" --> "1" Pet : schedules care for
-    Scheduler "1" o-- "0..*" CareTask : tracks
+    Scheduler "1" o-- "0..*" Task : tracks

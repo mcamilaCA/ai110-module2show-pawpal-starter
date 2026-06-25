@@ -27,9 +27,15 @@
 
 **b. Design changes**
 
-- Did your design change during implementation?
+- Did your design change during implementation? No, I stayed constant with the original design (after the pointed editions)
 - If yes, describe at least one change and why you made it.
 
+-> edits after reviewing the system and code provided by AI:
+   - Owner class has a list of Pets and functions add_pet() and remove_pet()
+   - Task class has pet_id value to create a link between the pet and its tasks
+   - Task rank_task() functions takes in the owner.preferences when ranking and organizing the tasks 
+   - Scheduler class now includes a list of Pets (INTEGRATE FILTERING BY PETS WHEN GENERATING PER-PET PLANS)
+   - 
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
