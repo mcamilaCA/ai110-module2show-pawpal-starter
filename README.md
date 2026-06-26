@@ -48,10 +48,40 @@ Paste a sample of your app's CLI or Streamlit output here so a reader can see wh
 
 ```
 # e.g.:
-# Daily plan for Biscuit (Golden Retriever):
-#   08:00 — Morning walk (30 min) [priority: high]
-#   09:00 — Feeding (10 min) [priority: high]
-#   ...
+
+Schedule of individual pets:
+
+🐶 Buddy (Dog, age 3)
+  ├─ play          45 min   ★★★  [daily]
+  ├─ feed          15 min   ★★  [daily]
+  └─ walk          30 min   ★  [daily]
+  Total: 90 min
+
+🐱 Whiskers (Cat, age 5)
+  ├─ groom         30 min   ★★★  [daily]
+  ├─ feed          15 min   ★★  [daily]
+  └─ vet           60 min   ★
+  Total: 105 min
+
+Owner's schedule:
+
+╔════════════════════════════════════╗
+║        Schedule for Andrew         ║
+╚════════════════════════════════════╝
+
+🐶 Buddy (Dog, age 3)
+  ├─ play          45 min   ★★★  [daily]
+  └─ feed          15 min   ★★  [daily]
+  Total: 60 min
+
+🐱 Whiskers (Cat, age 5)
+  ├─ groom         30 min   ★★★  [daily]
+  └─ feed          15 min   ★★  [daily]
+  Total: 45 min
+
+──────────────────────────────────────
+Total scheduled time: 105 / 120 min
+
 ```
 
 ## 🧪 Testing PawPal+
