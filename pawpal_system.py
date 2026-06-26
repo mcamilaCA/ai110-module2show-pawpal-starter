@@ -66,12 +66,14 @@ class Scheduler:
         self._pets: List[Pet] = pets
         self._tasks: List[Task] = []
         self._scheduled_tasks: List[Task] = []
-        self._total_duration: int = 0
         self._explanation: List[str] = []
 
     def add_task(self, task: Task) -> None:
         pet_ids = {pet.pet_id for pet in self._pets}
         
+        if any(t.task_id == task.task_id for t in self._tasks):
+            raise ValueError(f'Task with id {task.task_id} already exists.')
+
         if task.pet_id is not None and task.pet_id not in pet_ids:
             raise ValueError(f'No pet with id {task.pet_id} is registered in this system.')
         
@@ -97,6 +99,7 @@ class Scheduler:
                     setattr(task, attr, value)
                 self._scheduled_tasks = [] 
                 self._total_duration = 0
+                self._explanation = []
                 return
 
     def rank_tasks(self) -> List[Task]:
@@ -104,7 +107,7 @@ class Scheduler:
 
         def sort_key( t: Task):
             bonus = 1 if t.task_type in preferences else 0
-            return (t.priority + bonus, t.duration)
+            return (t.priority + bonus,t.is_daily, -t.duration)
         
         return sorted(self._tasks, key=sort_key, reverse=True)
 
@@ -120,6 +123,7 @@ class Scheduler:
             if accumulated + task.duration <= self._owner.available_time:
                 self._scheduled_tasks.append(task)
                 accumulated += task.duration
+
         self._total_duration = accumulated
         return self._scheduled_tasks
 
@@ -128,10 +132,10 @@ class Scheduler:
             if task.is_daily:
                 task.completed = False
 
-    def calculate_total_duration(self) -> int:
-        self._total_duration = sum(t.duration for t in self._scheduled_tasks)
-        return self._total_duration
-
+    @property
+    def total_duration(self) -> int:
+        return sum(t.duration for t in self._scheduled_tasks)
+    
     def generate_explanation(self) -> List[str]:
         self._explanation = [
             f"Scheduled '{t.name}' (priority={t.priority}, duration={t.duration} min)"

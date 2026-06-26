@@ -35,7 +35,7 @@
    - Task class has pet_id value to create a link between the pet and its tasks
    - Task rank_task() functions takes in the owner.preferences when ranking and organizing the tasks 
    - Scheduler class now includes a list of Pets (INTEGRATE FILTERING BY PETS WHEN GENERATING PER-PET PLANS)
-   - 
+  
 ---
 
 ## 2. Scheduling Logic and Tradeoffs
