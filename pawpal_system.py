@@ -209,6 +209,20 @@ class Scheduler:
             return
         self._print_pet_block(pet, scheduled)
 
+    def complete_task(self, task_id: int) -> None:
+        """Find the task with the given ID across all pets and mark it as completed."""
+        for task in self._tasks:
+            if task.task_id == task_id:
+                task.mark_complete()
+                return
+
+    def incomplete_task(self, task_id: int) -> None:
+        """Find the task with the given ID across all pets and mark it as incomplete."""
+        for task in self._tasks:
+            if task.task_id == task_id:
+                task.mark_incomplete()
+                return
+
     def reset_daily_tasks(self) -> None:
         """Mark all daily tasks as incomplete to prepare for a new day."""
         for task in self._tasks:
